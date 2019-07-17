@@ -1,0 +1,31 @@
+<h1>Hello, One Bin</h1>
+<button onclick="test()" >Test</button>
+<button onclick="test1()" >Test</button>
+<button onclick="test3()" >Test</button>
+<button onclick="test4()" >Test</button>
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+    const socket = io();
+
+    socket.on('connect', () => {
+        console.log('Connected');
+    });
+
+    socket.on('plc', (data) => {
+        // console.log(data)
+    })
+
+    socket.on('clients', (data) => console.log(data))
+
+    function test() {
+        let tablet = 'TABLET123'
+        socket.emit('subscribe', tablet)
+    }
+
+    function test1() {        
+        socket.emit('clients', '')
+    }
+
+
+</script>
