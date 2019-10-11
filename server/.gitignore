@@ -1,7 +1,0 @@
-node_modules/
-.env*
-.vscode/
-package-lock.json
-ngOneBin/node_modules/
-.env.development
-public/
