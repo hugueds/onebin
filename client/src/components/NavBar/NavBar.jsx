@@ -84,7 +84,7 @@ export default function NavBar(props) {
             {props.user}
           </Typography>
           <Typography variant="h6" className={classes.title}>
-            ONE BIN
+            {process.env.REACT_APP_TITLE}
           </Typography>
           <ConnStatus />
           <img src={scania} alt="logo" className={classes.img} />

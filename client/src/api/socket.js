@@ -10,7 +10,7 @@ class SocketService {
     ipAddress = '';
 
     constructor() {
-        this.socket = socketIOClient(this.url);
+        this.socket = socketIOClient(this.url, { path: '/kanban/socket.io' } );
         this.socket.on('connect', () => {
             console.log('Web Socket Connected at ' + this.url);            
         });
