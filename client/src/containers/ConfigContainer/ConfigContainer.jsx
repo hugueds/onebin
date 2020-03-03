@@ -6,7 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import SwipeableViews from 'react-swipeable-views';
 import ConfigTablet from '../../components/ConfigTablet';
 import ConfigInstances from '../../components/ConfigInstances';
-// import ConfigGroup from '../../components/ConfigGroup';
+import ConfigGroup from '../../components/ConfigGroup';
 
 export default class ConfigContainer extends Component {
 
@@ -37,7 +37,7 @@ export default class ConfigContainer extends Component {
                         <Tab value={0} label="Tablets" />
                         <Tab value={1} label="Instâncias" />
                         {/* TO IMPLEMENT */}
-                        {/* <Tab value={2} label="Grupos" />  */}
+                        <Tab value={2} label="Grupos" /> 
                     </Tabs>
                 </AppBar>
 
@@ -50,7 +50,7 @@ export default class ConfigContainer extends Component {
                     <ConfigTablet />
                     <ConfigInstances />
                     {/* TO IMPLEMENT */}
-                    {/* <ConfigGroup /> */}
+                    <ConfigGroup />
 
                 </SwipeableViews>
             </Container>            

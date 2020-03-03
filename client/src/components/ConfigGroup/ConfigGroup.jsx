@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import MaterialTable from 'material-table';
 import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
-import GroupService from '../../api/group';
+// import GroupService from '../../api/group';
+import OneBinService from '../../api/onebin';
 
 const generateClassName = createGenerateClassName({
     productionPrefix: 'mt',
     seed: 'mt'
 });
 
-export default class Tablet extends Component {
+export default class ConfigGroup extends Component {
 
-    api = new GroupService();
-    sub = null;
+    api = new OneBinService('group');   
 
     state = {
-        tablets: []
+        groups: []
     }
 
     componentDidMount() {
-        this.api.getAll().then((tablets) => this.setState({ tablets }));
+        this.api.getAll().then((groups) => this.setState({ groups }));
     }
 
     componentWillUnmount() {
@@ -28,7 +28,7 @@ export default class Tablet extends Component {
 
     render() {
 
-        const { tablets } = this.state;
+        const { groups } = this.state;
 
         return (
 
@@ -36,19 +36,19 @@ export default class Tablet extends Component {
                 <MaterialTable
                     title="Grupos"
                     columns={[
+                        { title: "Numero", field: "number" },
                         { title: "Nome", field: "name" },
-                        { title: "IP", field: "ip" },
-                        { title: "Grupo", field: "group", type: "numeric" }
+                        { title: "Instances", field: "instances"}
                     ]}
-                    data={tablets}
+                    data={groups}
                     editable={{
                         onRowAdd: newData =>
                             new Promise((resolve, reject) => {
                                 setTimeout(() => {
                                     this.api.create(newData).then((res) => {
-                                        const tablets = this.state.tablets;
-                                        tablets.push(newData);
-                                        this.setState({ tablets }, () => resolve());
+                                        const groups = this.state.groups;
+                                        groups.push(newData);
+                                        this.setState({ groups }, () => resolve());
                                     });
                                     resolve()
                                 }, 1000)
@@ -57,10 +57,10 @@ export default class Tablet extends Component {
                             new Promise((resolve, reject) => {
                                 setTimeout(() => {
                                     this.api.update(newData).then((r) => {
-                                        const tablets = this.state.tablets;
-                                        const index = tablets.indexOf(oldData);
-                                        tablets[index] = newData;
-                                        this.setState({ tablets }, () => resolve());
+                                        const groups = this.state.groups;
+                                        const index = groups.indexOf(oldData);
+                                        groups[index] = newData;
+                                        this.setState({ groups }, () => resolve());
                                     });
                                     resolve()
                                 }, 1000)
@@ -69,10 +69,10 @@ export default class Tablet extends Component {
                             new Promise((resolve, reject) => {
                                 setTimeout(() => {
                                     this.api.delete().then((data) => {
-                                        let { tablets } = this.state;
-                                        const index = tablets.indexOf(oldData);
-                                        tablets.splice(index, 1);
-                                        this.setState({ tablets }, () => resolve());
+                                        let { groups } = this.state;
+                                        const index = groups.indexOf(oldData);
+                                        groups.splice(index, 1);
+                                        this.setState({ groups }, () => resolve());
                                     });
                                     resolve()
                                 }, 1000)

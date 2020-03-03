@@ -14,7 +14,7 @@ router.get('/t0', (req, res, next) => {
 });
 
 // Cria uma instância padrão
-router.get('/t1', async (req, res, next) => {
+router.get('/createinstance', async (req, res, next) => {
     const i = new Instance(defaultInstances[0]);
     await i.save();
     console.log('Default Instance Saved');
@@ -22,7 +22,7 @@ router.get('/t1', async (req, res, next) => {
 });
 
 // Adicionando uma instância a um grupo por padrao
-router.get('/t2', async (req, res, next) => {
+router.get('/addinstancetogroup', async (req, res, next) => {
     const i = await I.findOne({ number: 0 });
     const g = new G();
     g.name = 'Grupo 0';
