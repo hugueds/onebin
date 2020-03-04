@@ -11,7 +11,7 @@ import ConfigGroup from '../../components/ConfigGroup';
 export default class ConfigContainer extends Component {
 
     state = {
-        activeTab: 0
+        activeTab: 2
     }
 
     handleChange = (event, value) => {
